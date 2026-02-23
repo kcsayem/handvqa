@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Title -->
+  <title>HandVQA: Diagnosing and Improving Fine-Grained Spatial Reasoning about Hands in Vision-Language Models | CVPR 2026</title>
+
+  <!-- SEO -->
+  <meta name="title"
+        content="HandVQA: Diagnosing and Improving Fine-Grained Spatial Reasoning about Hands in Vision-Language Models">
+  <meta name="description"
+        content="HandVQA is a large-scale 3D-geometry-grounded benchmark for diagnosing fine-grained spatial reasoning failures in vision-language models, focusing on articulated hand understanding and spatial reasoning.">
+  <meta name="keywords"
+        content="HandVQA, Vision-Language Models, Spatial Reasoning, Hand Pose, 3D Geometry, VLM Benchmark, CVPR 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://kcsayem.github.io/handvqa/">
+
+  <!-- Open Graph (LinkedIn, Slack, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title"
+        content="HandVQA | CVPR 2026">
+  <meta property="og:description"
+        content="Diagnosing fine-grained spatial reasoning failures in Vision-Language Models via a 3D-grounded hand pose benchmark.">
+  <meta property="og:image"
+        content="https://kcsayem.github.io/handvqa/static/images/teaser.png">
+  <meta property="og:url"
+        content="https://kcsayem.github.io/handvqa/">
+
+  <!-- Twitter Preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title"
+        content="HandVQA | CVPR 2026">
+  <meta name="twitter:description"
+        content="A benchmark for diagnosing spatial reasoning failures in Vision-Language Models through hand pose question answering.">
+  <meta name="twitter:image"
+        content="https://kcsayem.github.io/handvqa/static/images/teaser.png">
+
+  <!-- Citation metadata (Google Scholar indexing) -->
+  <meta name="citation_title"
+        content="HandVQA: Diagnosing and Improving Fine-Grained Spatial Reasoning about Hands in Vision-Language Models">
+  <meta name="citation_author" content="MD Khalequzzaman Chowdhury Sayem">
+  <meta name="citation_author" content="Mubarrat Tajoar Chowdhury">
+  <meta name="citation_author" content="Yihalem Yimolal Tiruneh">
+  <meta name="citation_author" content="Muneeb A. Khan">
+  <meta name="citation_author" content="Muhammad Salman Ali">
+  <meta name="citation_author" content="Binod Bhattarai">
+  <meta name="citation_author" content="Seungryul Baek">
+  <meta name="citation_conference_title"
+        content="IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)">
+  <meta name="citation_year" content="2026">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Google+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./static/images/handvqa_icon.png">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <!-- <button onclick="showNextResult()">Show Next Result</button> -->
+</head>
+<body>
+
+<!-- Top nav (minimal; you can customize links later) -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="#top">
+        <span class="icon"><i class="fas fa-home"></i></span>
+      </a>
+
+      <a class="navbar-item" href="#overview">Overview</a>
+      <a class="navbar-item" href="#benchmark">Benchmark</a>
+      <a class="navbar-item" href="#results">Results</a>
+      <a class="navbar-item" href="#BibTeX">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            HandVQA: Diagnosing and Improving Fine-Grained Spatial Reasoning about Hands in Vision-Language Models
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">MD Khalequzzaman Chowdhury Sayem<sup>1*</sup>,</span>
+            <span class="author-block">Mubarrat Tajoar Chowdhury<sup>1*</sup>,</span>
+            <span class="author-block">Yihalem Yimolal Tiruneh<sup>1</sup>,</span>
+            <span class="author-block">Muneeb A. Khan<sup>1</sup>,</span>
+            <span class="author-block">Muhammad Salman Ali<sup>1</sup>,</span>
+            <span class="author-block">Binod Bhattarai<sup>2,3,4†</sup>,</span>
+            <span class="author-block">Seungryul Baek<sup>1†</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>UNIST</span>&nbsp;&nbsp;
+            <span class="author-block"><sup>2</sup>University of Aberdeen</span>&nbsp;&nbsp;
+            <span class="author-block"><sup>3</sup>University College London</span>&nbsp;&nbsp;
+            <span class="author-block"><sup>4</sup>Fogsphere (Redev.AI Ltd), UK</span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top: 0.5rem;">
+            <span class="author-block">CVPR 2026</span>
+          </div>
+
+          <!-- Optional: equal contribution / corresponding author -->
+          <div class="is-size-6 has-text-centered" style="margin-top: 0.5rem;">
+            <!-- PLACEHOLDER (edit if applicable): * Equal contribution · ✉ Corresponding author -->
+            <span style="opacity: 0.85;"><sup>*</sup> Equal contribution.</span>
+            <span style="opacity: 0.85;"><sup>†</sup> These authors jointly supervised this work.</span>
+          </div>
+
+
+          <div class="column has-text-centered" style="margin-top: 1.25rem;">
+            <div class="publication-links">
+
+              <!-- Paper -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper (Coming Soon!)</span>
+                </a>
+              </span>
+
+              <!-- Supplementary -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-alt"></i></span>
+                  <span>Supplementary (Coming Soon!)</span>
+                </a>
+              </span>
+
+              <!-- arXiv (optional) -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv (Coming Soon!)</span>
+                </a>
+              </span>
+
+              <!-- Code -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (Coming Soon!)</span>
+                </a>
+              </span>
+
+              <!-- Dataset -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="far fa-images"></i></span>
+                  <span>Dataset (Coming Soon!)</span>
+                </a>
+              </span>
+
+              <!-- Thesis slides -->
+              <!-- <span class="link-block">
+                <a href="PATH_TO_THESIS_PRESENTATION_PDF"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                  <span>Thesis Slides</span>
+                </a>
+              </span> -->
+
+              <!-- Poster (optional) -->
+              <!-- <span class="link-block">
+                <a href="PATH_TO_POSTER_PDF"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-image"></i></span>
+                  <span>Poster</span>
+                </a>
+              </span> -->
+
+              <!-- Video (optional) -->
+              <!-- <span class="link-block">
+                <a href="PATH_TO_VIDEO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEASER -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+
+      <img src="static/images/handvqa_teaser.png"
+           alt="HandVQA teaser figure"
+           style="width:100%; border-radius:12px;">
+
+      <h2 class="subtitle has-text-centered">
+        HandVQA teaches fine-grained 3D hand geometry to vision-language models,
+        enabling spatially-aware reasoning and strong zero-shot transfer to
+        gesture recognition and hand-object interaction tasks.
+      </h2>
+
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW / ABSTRACT -->
+<section class="section" id="overview">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3">Abstract</h2>
+
+        <div class="content has-text-justified">
+          <p>
+          Understanding fine-grained articulation of human hands is critical in high-stakes settings such as robot-assisted surgery,
+          chip manufacturing, and AR/VR-based human–AI interaction. Despite strong performance on general vision-language benchmarks,
+          current vision-language models (VLMs) struggle with fine-grained spatial reasoning, especially for complex, articulated hand poses.
+          </p>
+
+          <p>
+          We introduce <b>HandVQA</b>, a large-scale diagnostic benchmark that evaluates VLMs’ understanding of detailed hand anatomy via
+          visual question answering. Built upon high-quality 3D hand datasets (<b>FreiHAND</b>, <b>InterHand2.6M</b>, <b>FPHA</b>),
+          HandVQA provides <b>1.6M+</b> controlled multiple-choice questions probing spatial relationships between hand joints, including
+          <b>angles</b>, <b>distances</b>, and <b>relative positions</b>.
+          </p>
+
+          <p>
+          We evaluate state-of-the-art VLMs (e.g., <b>LLaVA</b>, <b>DeepSeek</b>, <b>Qwen-VL</b>) in both base and LoRA fine-tuned settings.
+          Our results reveal systematic limitations such as hallucinated finger parts, incorrect geometric interpretations, and poor generalization.
+          HandVQA not only exposes these reasoning gaps, but also provides a validated path to improvement: the 3D-grounded spatial knowledge
+          learned from HandVQA transfers zero-shot to novel downstream tasks, improving hand gesture recognition (<b>+10.33%</b>) and
+          hand–object interaction recognition (<b>+2.63%</b>).          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOTIVATION -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3 has-text-centered">Motivation</h2>
+
+        <div class="content has-text-justified">
+          <p>
+          Despite impressive progress on general vision-language benchmarks,
+          current VLMs still struggle with fine-grained spatial reasoning about
+          articulated objects such as human hands. These failures are often hidden
+          in aggregate benchmark scores but become evident when models must reason
+          about precise finger configurations, inter-finger distances, or spatial
+          ordering.
+          </p>
+
+          <p>
+          As shown below, base VLMs frequently hallucinate finger configurations,
+          misjudge inter-finger distances, and confuse spatial ordering (e.g.,
+          left/right or front/behind). These errors become especially pronounced
+          under occlusion, viewpoint changes, or complex hand poses.
+          </p>
+
+          <p>
+          To systematically diagnose and improve these limitations, we introduce
+          <b>HandVQA</b>, a 3D-geometry-grounded benchmark designed to evaluate
+          fine-grained spatial reasoning about hands through controlled
+          visual question answering.
+          </p>
+        </div>
+
+        <!-- PLACEHOLDER: add 1 motivation figure -->
+        <h2 class="title is-3 has-text-centered">Where Current VLMs Fail</h2>
+
+            <div class="columns is-multiline">
+
+              <!-- Example 1 -->
+              <div class="column is-4">
+                <div class="box has-text-centered qual-card">
+
+                  <img src="static/images/qual_ood/Picture1.png"
+                      style="width:100%; border-radius:12px; margin-bottom:12px;">
+
+                  <p><b>Are any fingers crossing?</b></p>
+
+                  <p>
+                    Base VLM:
+                    <span style="color:#d33;">No ✗</span><br>
+
+                    Spatial-aware VLM:
+                    <span style="color:#28a745;">Yes ✓</span>
+                  </p>
+
+                  <p class="is-size-7">
+                    <b> Key challenge:</b> Detects self-occlusion patterns.
+                  </p>
+
+                </div>
+              </div>
+
+              <!-- Example 2 -->
+              <div class="column is-4">
+                <div class="box has-text-centered qual-card">
+
+                  <img src="static/images/qual_ood/Picture2.jpg"
+                      style="width:100%; border-radius:12px; margin-bottom:12px;">
+
+                  <p><b>Which pair of fingers are spread widest?</b></p>
+
+                  <p>
+                    Base VLM:
+                    <span style="color:#d33;">Index–Middle ✗</span><br>
+
+                    Spatial-aware VLM:
+                    <span style="color:#28a745; white-space: nowrap;">Middle–Ring ✓</span>
+                  </p>
+
+                  <p class="is-size-7">
+                    <b> Key challenge:</b> Tests distance reasoning.
+                  </p>
+
+                </div>
+              </div>
+
+              <!-- Example 3 -->
+              <div class="column is-4">
+                <div class="box has-text-centered qual-card">
+
+                  <img src="static/images/qual_ood/Picture3.jpg"
+                      style="width:100%; border-radius:12px; margin-bottom:12px;">
+
+                  <p><b>Which fingertip is closest to the palm?</b></p>
+
+                  <p>
+                    Base VLM:
+                    <span style="color:#d33;">Index ✗</span><br>
+
+                    Spatial-aware VLM:
+                    <span style="color:#28a745;">Ring ✓</span>
+                  </p>
+
+                  <p class="is-size-7">
+                    <b> Key challenge:</b> Combines distance reasoning from reference points.
+                  </p>
+
+                </div>
+              </div>
+
+              <!-- Example 4 -->
+              <div class="column is-4">
+                <div class="box has-text-centered qual-card">
+
+                  <img src="static/images/qual_ood/Picture4.jpg"
+                      style="width:100%; border-radius:12px; margin-bottom:12px;">
+
+                  <p><b>Is the index finger crossing the middle finger?</b></p>
+
+                  <p>
+                    Base VLM:
+                    <span style="color:#d33;">No ✗</span><br>
+
+                    Spatial-aware VLM:
+                    <span style="color:#28a745;">Yes ✓</span>
+                  </p>
+
+                  <p class="is-size-7">
+                    <b> Key challenge:</b> Requires depth and left/right ordering.
+                  </p>
+
+                </div>
+              </div>
+
+              <!-- Example 5 -->
+              <div class="column is-4">
+                <div class="box has-text-centered qual-card">
+
+                  <img src="static/images/qual_ood/Picture5.jpg"
+                      style="width:100%; border-radius:12px; margin-bottom:12px;">
+
+                  <p><b>Is the thumb left or right of the index finger?</b></p>
+
+                  <p>
+                    Base VLM:
+                    <span style="color:#d33;">Left ✗</span><br>
+
+                    Spatial-aware VLM:
+                    <span style="color:#28a745;">Right ✓</span>
+                  </p>
+
+                  <p class="is-size-7">
+                    <b> Key challenge:</b> Tests X-axis spatial reasoning.
+                  </p>
+
+                </div>
+              </div>
+
+              <!-- Example 6 -->
+              <div class="column is-4">
+                <div class="box has-text-centered qual-card">
+
+                  <img src="static/images/qual_ood/Picture6.jpg"
+                      style="width:100%; border-radius:12px; margin-bottom:12px;">
+
+                  <p><b>Are the two fingers touching?</b></p>
+
+                  <p>
+                    Base VLM:
+                    <span style="color:#d33;">No ✗</span><br>
+
+                    Spatial-aware VLM:
+                    <span style="color:#28a745;">Yes ✓</span>
+                  </p>
+
+                  <p class="is-size-7">
+                    <b> Key challenge:</b> Detect contact between fingers.
+                  </p>
+
+                </div>
+              </div>
+
+            </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARK -->
+<section class="section" id="benchmark">
+  <div class="container is-max-widescreen">
+
+    <h2 class="title is-3 has-text-centered">HandVQA Benchmark</h2>
+
+    <!-- (A) Overview + Joint map -->
+    <div class="columns is-vcentered" style="margin-top: 1.25rem;">
+      <div class="column is-6">
+        <div class="content">
+          <h3 class="title is-4">Overview</h3>
+
+          <ul>
+            <li><b>Evaluates 5 types</b> of hand spatial understanding:</li>
+            <ul>
+              <li><b>Angle</b> (4-way)</li>
+              <li><b>Distance</b> (3-way)</li>
+              <li><b>Relative Position X</b> (left/right)</li>
+              <li><b>Relative Position Y</b> (above/below)</li>
+              <li><b>Relative Position Z</b> (front/behind)</li>
+            </ul>
+
+            <li style="margin-top: 0.75rem;">
+              Built from high-quality <b>3D joint annotations</b> in
+              <b>FreiHAND</b>, <b>InterHand2.6M</b>, and <b>FPHA</b>.
+            </li>
+
+            <li style="margin-top: 0.75rem;">
+              Contains <b>1.6M+</b> controlled <b>multiple-choice</b> questions.
+            </li>
+          </ul>
+
+          <p style="margin-top: 0.75rem;">
+            Questions are generated <b>deterministically</b> from 3D joint coordinates and rendered
+            into natural-language MCQ options, ensuring explicit geometric grounding.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-6 has-text-centered">
+        <img src="static/images/benchmark_sec/mano_joint_map.png"
+             alt="Hand joint map (MANO joints) used in HandVQA"
+             style="width:100%; max-width: 560px; border-radius:12px;">
+        <p class="is-size-7" style="margin-top: 0.4rem; opacity: 0.9;">
+          Hand joint map (MANO-style joints) used to compute pose descriptors.
+        </p>
+      </div>
+    </div>
+
+    <hr style="margin: 2rem 0;">
+
+    <!-- (B) Contribution / What makes HandVQA different -->
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <div class="content">
+          <h3 class="title is-4 has-text-centered">What HandVQA Adds</h3>
+
+          <div class="box" style="border-radius:12px;">
+            <ul style="margin-bottom: 0;">
+              <li>
+                Targets <b>pose hallucination</b> by probing joint-level spatial errors
+                (e.g., finger angles and inter-joint distances).
+              </li>
+              <li>
+                Focuses on <b>part–whole spatial relations</b> within a single object (the hand),
+                rather than inter-object relationships.
+              </li>
+              <li>
+                All questions are <b>grounded in real 3D coordinates</b>, testing Euclidean concepts
+                such as distance and angle.
+              </li>
+              <li>
+                Evaluates <b>structured geometry understanding</b>—a diagnostic axis that is largely
+                missing from standard VQA benchmarks.
+              </li>
+              <li>
+                Large scale: <b>1.6M+</b> questions, <b>100+</b> joint combinations, and <b>5</b>
+                spatial reasoning types.
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <hr style="margin: 2rem 0;">
+
+    <!-- (C) Pose Descriptors -->
+    <div class="columns is-centered">
+      <div class="column is-12">
+        <h3 class="title is-4 has-text-centered">Pose Descriptors</h3>
+        <p class="has-text-centered" style="margin-top: -0.5rem; opacity:0.9;">
+          We compute discrete labels from 3D joints and convert them into controlled MCQ options.
+        </p>
+
+        <!-- Row 1: Angle + Distance -->
+        <div class="columns is-multiline" style="margin-top: 1rem;">
+          <div class="column is-6">
+            <div class="box" style="border-radius:12px; height:100%;">
+              <h4 class="title is-5">Angle</h4>
+              <img src="static/images/benchmark_sec/angle.png"
+                   alt="Angle descriptor illustration"
+                   style="width:100%; border-radius:12px; margin-bottom: 0.75rem;">
+
+              <ul class="is-size-6" style="margin-bottom: 0;">
+                <li><b>Bent completely inward:</b> θ &lt; 105°</li>
+                <li><b>Bent inward:</b> 105° ≤ θ &lt; 150°</li>
+                <li><b>Bent slightly inward:</b> 150° ≤ θ &lt; 170°</li>
+                <li><b>Straight:</b> θ ≥ 170°</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="column is-6">
+            <div class="box" style="border-radius:12px; height:100%;">
+              <h4 class="title is-5">Distance</h4>
+              <img src="static/images/benchmark_sec/distance.png"
+                   alt="Distance descriptor illustration"
+                   style="width:100%; border-radius:12px; margin-bottom: 0.75rem;">
+
+              <ul class="is-size-6" style="margin-bottom: 0;">
+                <li><b>Close to:</b> d &lt; 0.1</li>
+                <li><b>Spread from:</b> 0.1 ≤ d &lt; 0.3</li>
+                <li><b>Spread wide from:</b> d ≥ 0.3</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: RelPos X/Y/Z -->
+        <div class="columns is-multiline">
+          <div class="column is-4">
+            <div class="box" style="border-radius:12px; height:100%;">
+              <h4 class="title is-5">Relative Position (X)</h4>
+              <img src="static/images/benchmark_sec/relative_position_x.png"
+                   alt="Relative position X illustration"
+                   style="width:100%; border-radius:12px; margin-bottom: 0.75rem;">
+
+              <ul class="is-size-6" style="margin-bottom: 0;">
+                <li><b>Left of:</b> Δ<sub>x</sub> &lt; −0.15</li>
+                <li><b>Aligned:</b> −0.15 ≤ Δ<sub>x</sub> &lt; 0.15</li>
+                <li><b>Right of:</b> Δ<sub>x</sub> ≥ 0.15</li>
+              </ul>
+              <p class="is-size-7" style="margin-top: 0.5rem; opacity:0.9;">
+                (Aligned cases are excluded in benchmark questions to avoid visually ambiguous labels.)
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-4">
+            <div class="box" style="border-radius:12px; height:100%;">
+              <h4 class="title is-5">Relative Position (Y)</h4>
+              <img src="static/images/benchmark_sec/relative_position_y.png"
+                   alt="Relative position Y illustration"
+                   style="width:100%; border-radius:12px; margin-bottom: 0.75rem;">
+
+              <ul class="is-size-6" style="margin-bottom: 0;">
+                <li><b>Below:</b> Δ<sub>y</sub> &lt; −0.15</li>
+                <li><b>Aligned:</b> −0.15 ≤ Δ<sub>y</sub> &lt; 0.15</li>
+                <li><b>Above:</b> Δ<sub>y</sub> ≥ 0.15</li>
+              </ul>
+              <p class="is-size-7" style="margin-top: 0.5rem; opacity:0.9;">
+                (Aligned cases are excluded in benchmark questions to avoid visually ambiguous labels.)
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-4">
+            <div class="box" style="border-radius:12px; height:100%;">
+              <h4 class="title is-5">Relative Position (Z)</h4>
+              <img src="static/images/benchmark_sec/relative_position_z.png"
+                   alt="Relative position Z illustration"
+                   style="width:100%; border-radius:12px; margin-bottom: 0.75rem;">
+
+              <ul class="is-size-6" style="margin-bottom: 0;">
+                <li><b>Behind:</b> Δ<sub>z</sub> &lt; −0.15</li>
+                <li><b>Aligned:</b> −0.15 ≤ Δ<sub>z</sub> &lt; 0.15</li>
+                <li><b>In front of:</b> Δ<sub>z</sub> ≥ 0.15</li>
+              </ul>
+              <p class="is-size-7" style="margin-top: 0.5rem; opacity:0.9;">
+                (Aligned cases are excluded in benchmark questions to avoid visually ambiguous labels.)
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <h2 class="title is-3 has-text-centered">Benchmark Generation Pipeline</h2>
+
+        <div class="content has-text-justified">
+          <p class="is-size-7" style="opacity:0.9; margin-top:0.5rem;">
+            <b>Overview of the HandVQA Pipeline.</b>
+            Our pipeline converts normalized 3D hand joints into interpretable VQA pairs
+            through three deterministic stages. 
+            <b>(1) Pose extraction:</b> continuous pose descriptors — joint angles (θ),
+            distances (d), and relative positions (Δx, Δy, Δz) — are computed and
+            discretized into categorical pose descriptors.
+            <b>(2) Text generation:</b> deterministic sentence templates are filled using
+            these descriptors to produce candidate answer options, including both correct
+            and distractor choices.
+            <b>(3) MCQ construction:</b> each hand image is paired with its answer options
+            to form structured multiple-choice VQA samples with a single correct label.
+          </p>
+        </div>
+
+        <!-- PLACEHOLDER: pipeline figure from thesis/paper -->
+        <div class="content has-text-centered">
+          <img src="static/images/benchmark_sec/pipeline.png"
+               alt="HandVQA pipeline"
+               style="width:100%; border-radius: 12px;"/>
+        </div>
+
+        <!-- Question examples -->
+        <div class="columns is-centered" style="margin-top: 1.25rem;">
+          <div class="column is-full-width">
+            <h3 class="title is-4 has-text-centered">Question Format</h3>
+            <div class="content has-text-justified">
+              <p class="is-size-7" style="opacity:0.9; margin-top:0.5rem;">
+                <b>Overview of HandVQA Question Format.</b>
+                The benchmark decomposes hand pose understanding into five spatial reasoning
+                sub-tasks: <b>Angle</b>, <b>Distance</b>, and <b>Relative Position</b> along the
+                X, Y, and Z axes. A hand image with annotated joint indices supports multiple-choice
+                questions for each task, generated directly from 3D joint coordinates. Correct
+                answers are highlighted in <span style="color:#28a745;"><b>green</b></span>.
+              </p>
+            </div>
+
+            <!-- PLACEHOLDER: question format figure -->
+            <div class="content has-text-centered">
+              <img src="static/images/benchmark_sec/question examples.png"
+                   alt="HandVQA question format"
+                   style="width:100%; border-radius: 12px;"/>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATASET STATS -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <h2 class="title is-3 has-text-centered">Dataset Scale and Coverage</h2>
+
+        <div class="content has-text-justified">
+          <p class="is-size-7" style="opacity:0.9; margin-top:0.5rem;">
+            <b>Breakdown of question types across training (left) and evaluation (right) splits.</b>
+            Each dataset in the HandVQA benchmark maintains a balanced distribution across
+            five spatial reasoning tasks: <b>angle</b>, <b>distance</b>, and relative
+            positions along the <b>X</b>, <b>Y</b>, and <b>Z</b> axes. This balanced
+            composition supports fair evaluation across all pose-related subtasks.
+          </p>
+        </div>
+
+        <!-- PLACEHOLDER: dataset distribution plot -->
+        <div class="content has-text-centered">
+          <img src="static/images/benchmark_sec/training_eval_question_types.png"
+               alt="HandVQA dataset statistics"
+               style="width:100%; border-radius: 12px;"/>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Results</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <!-- Your image here -->
+          <div class="has-text-centered">
+            <img src="static/images/quant_res/Table_2.png" alt="Angle Results"/>
+          </div>
+        </div>
+        <div class="item">
+          <!-- Your image here -->
+          <div class="has-text-centered">
+            <img src="static/images/quant_res/Table_3.png" alt="Relative Position Results"/>
+          </div>
+        </div>
+        <div class="item">
+          <img src="static/images/quant_res/Table_4.png"
+              alt="Zero-shot Transfer Results"
+              style="max-height:80vh; width:auto;">
+        </div>
+        <div class="item">
+          <!-- Your image here -->
+          <div class="has-text-centered">
+            <img src="static/images/quant_res/Supp_Table_2_3.png" alt="Supplementary Breakdown Results"/>
+          </div>
+        </div>
+        <div class="item">
+          <!-- Your image here -->
+          <div class="has-text-centered">
+            <img src="static/images/quant_res/Supp_Table_4.png" alt="Supplementary Breakdown Results 2"/>
+          </div>
+        </div>
+        <div class="item">
+          <!-- Your image here -->
+          <div class="has-text-centered">
+            <img src="static/images/quant_res/Supp_Table_5.png" alt="Supplementary Breakdown Results 3"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Findings -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <h2 class="title is-3 has-text-centered">Key Findings</h2>
+
+        <div class="content">
+          <ul>
+            <li>
+              <b>Fine-grained articulation remains challenging:</b>
+              Even strong vision-language models struggle with subtle
+              finger bending and articulated pose understanding,
+              indicating limited sensitivity to precise geometric cues.
+            </li>
+
+            <li>
+              <b>Distance reasoning shows systematic bias:</b>
+              Base models frequently default to visually plausible
+              “close” predictions, whereas geometry-grounded
+              fine-tuning substantially reduces this bias.
+            </li>
+
+            <li>
+              <b>Directional spatial reasoning improves most:</b>
+              Relations such as left/right, above/below, and
+              front/behind benefit strongly from HandVQA training,
+              suggesting improved spatial consistency through
+              explicit 3D grounding.
+            </li>
+
+            <li>
+              <b>Zero-shot transfer from 3D spatial grounding:</b>
+              Spatial knowledge learned from HandVQA transfers
+              effectively without additional training, improving
+              downstream tasks such as <b>gesture recognition</b> and
+              <b>hand–object interaction</b> understanding.
+            </li>
+
+            <li>
+              <b>Improved confidence calibration after fine-tuning:</b>
+              Base models often make incorrect predictions with high
+              confidence, whereas fine-tuned models achieve higher
+              accuracy while exhibiting more reliable confidence
+              estimates.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITATIVE CAROUSEL (optional; keep if you have multiple images) -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-4 has-text-centered" style="margin-bottom: 1rem;">Qualitative Examples</h2>
+
+      <div id="results-carousel-qual" class="carousel results-carousel">
+
+        <div class="item">
+          <figure class="qual-figure">
+            <img src="static/images/qual_res/qualitative_results_gesture.png"
+                 alt="Gesture Recognition Example"/>
+            <figcaption class="qual-caption">
+              <b>Zero-shot transfer (Gesture Recognition):</b> Qualitative Results on Zero-shot Gesture Recognition on HaGRID dataset.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="item">
+          <figure class="qual-figure">
+            <img src="static/images/qual_res/qualitative_results_interaction.png"
+                 alt="Hand-Object Interaction Example"/>
+            <figcaption class="qual-caption">
+              <b>Zero-shot transfer (Hand–Object Interaction):</b> Qualitative Results on Zero-shot Hand-Object Interaction Recognition on H2O dataset.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="item">
+          <figure class="qual-figure">
+            <img src="static/images/qual_res/qualitative_results_freihand_v2.png"
+                 alt="FreiHAND Examples on Our Benchmark"/>
+            <figcaption class="qual-caption">
+              <b>FreiHAND:</b> HandVQA fine-tuning improves LLaVA’s joint-level spatial reasoning: the base model frequently chooses inconsistent options, while the fine-tuned model selects the correct answers across diverse poses.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="item">
+          <figure class="qual-figure">
+            <img src="static/images/qual_res/qualitative_results_fpha_v2.png"
+                 alt="FPHA Examples on Our Benchmark"/>
+            <figcaption class="qual-caption">
+              <b>FPHA (egocentric):</b> HandVQA fine-tuning improves LLaVA’s joint-level spatial reasoning: the base model frequently chooses inconsistent options, while the fine-tuned model selects the correct answers across diverse poses.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="item">
+          <figure class="qual-figure">
+            <img src="static/images/qual_res/qualitative_results_interhand_v2.png"
+                 alt="InterHand Examples on Our Benchmark"/>
+            <figcaption class="qual-caption">
+              <b>InterHand2.6M:</b> HandVQA fine-tuning improves LLaVA’s joint-level spatial reasoning: the base model frequently chooses inconsistent options, while the fine-tuned model selects the correct answers across diverse poses.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIBTEX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>Coming Soon!
+</code></pre> 
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="PATH_TO_PAPER_PDF">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="PATH_TO_GITHUB_REPO">
+        <i class="fab fa-github"></i>
+      </a>
+      <a class="icon-link" href="#BibTeX">
+        <i class="fas fa-quote-right"></i>
+      </a>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website template is based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies project page</a>.
+          </p>
+          <!-- <p class="is-size-7" style="opacity: 0.9;">
+            (PLACEHOLDER) Add acknowledgements / funding / licenses for dataset sources if needed.
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize ALL carousels on the page (Nerfies-style)
+    bulmaCarousel.attach('.carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      autoplay: false,
+      navigation: true,
+      pagination: true,
+    });
+  });
+</script>
+</body>
+</html>
