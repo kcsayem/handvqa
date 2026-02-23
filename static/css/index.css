@@ -197,7 +197,7 @@ body {
 
 /* Give the whole carousel a stable height so vertical centering has meaning */
 #results-carousel {
-  min-height: 30vh;
+  min-height: 50vh;
 }
 
 /* Prevent carousel controls overlapping captions */
@@ -209,7 +209,7 @@ body {
    Target both and force flex centering. */
 #results-carousel .carousel-item,
 #results-carousel .item {
-  min-height: 30vh;
+  min-height: 55vh;
   display: flex !important;
   justify-content: center;
   align-items: center;
@@ -217,7 +217,7 @@ body {
 
 /* Optional: keep images from stretching */
 #results-carousel img {
-  max-height: 30vh;
+  max-height: 55vh;
   width: auto;
   max-width: 100%;
   object-fit: contain;
