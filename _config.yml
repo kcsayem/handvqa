@@ -1,0 +1,5 @@
+url: "https://kcsayem.github.io"
+baseurl: "/handvqa"
+title: "HandVQA: Diagnosing and Improving Fine-Grained Spatial Reasoning"
+plugins:
+  - jekyll-sitemap
