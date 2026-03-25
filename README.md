@@ -12,8 +12,8 @@
   Yihalem Yimolal Tiruneh<sup>1</sup>,
   Muneeb A. Khan<sup>1*</sup>,
   Muhammad Salman Ali<sup>1*</sup>,
-  Binod Bhattarai<sup>2,3,4†</sup>,
-  Seungryul Baek<sup>1†</sup>
+  Binod Bhattarai<sup>2,3,4&dagger;</sup>,
+  Seungryul Baek<sup>1&dagger;</sup>
 </p>
 
 <p align="center">
@@ -25,59 +25,35 @@
 
 <p align="center">
   <sup>*</sup>Equal contribution.
-  <sup>†</sup>These authors jointly supervised this work.
+  <sup>&dagger;</sup>These authors jointly supervised this work.
 </p>
 
 <p align="center">
-  <a href="https://kcsayem.github.io/handvqa/"><img alt="Project Page" src="https://img.shields.io/badge/Project-Page-111111?style=for-the-badge"></a>
-  <a href="https://huggingface.co/datasets/kcsayem/handvqa"><img alt="Dataset" src="https://img.shields.io/badge/HuggingFace-Dataset-ffbf00?style=for-the-badge"></a>
-  <a href="https://github.com/kcsayem/handvqa"><img alt="Code" src="https://img.shields.io/badge/GitHub-Code-24292f?style=for-the-badge"></a>
-</p>
-
-<p align="center">
-  <img src="./static/images/handvqa_teaser.png" alt="HandVQA teaser" width="100%">
-</p>
-
-<p align="center">
-  <em>HandVQA teaches fine-grained 3D hand geometry to vision-language models, enabling spatially aware reasoning and strong zero-shot transfer to downstream hand understanding tasks.</em>
+  <a href="https://kcsayem.github.io/handvqa/"><img alt="Project Page" src="https://img.shields.io/badge/Project-Page-3b3b3b?style=for-the-badge"></a>
+  <a href="https://huggingface.co/datasets/kcsayem/handvqa"><img alt="Dataset" src="https://img.shields.io/badge/HuggingFace-Dataset-fcc624?style=for-the-badge"></a>
+  <a href="https://github.com/kcsayem/handvqa"><img alt="GitHub Code" src="https://img.shields.io/badge/GitHub-Code-2f3542?style=for-the-badge"></a>
 </p>
 
 </div>
 
----
-
 ## Overview
 
-Understanding articulated human hands is essential in settings such as robot-assisted surgery, chip manufacturing, and AR/VR-based human-AI interaction. Despite strong performance on general benchmarks, current vision-language models still struggle with fine-grained spatial reasoning for complex hand poses.
+HandVQA is a large-scale, 3D-grounded benchmark for diagnosing fine-grained spatial reasoning about articulated human hands in vision-language models. Built on top of FreiHAND, InterHand2.6M, and FPHA, it contains more than 1.6 million controlled multiple-choice questions covering angles, distances, and relative positions along the X, Y, and Z axes.
 
-HandVQA is a large-scale, 3D-grounded diagnostic benchmark for evaluating that weakness directly. Built on top of FreiHAND, InterHand2.6M, and FPHA, it contains more than 1.6 million controlled multiple-choice questions about joint angles, distances, and relative positions along the X, Y, and Z axes.
+<p align="center">
+  <img src="./static/images/benchmark_sec/pipeline.png" alt="HandVQA pipeline" width="100%">
+</p>
 
-## Why HandVQA
+<p align="center">
+  <em>HandVQA converts 3D hand joints into geometry-grounded pose descriptors and controlled multiple-choice questions.</em>
+</p>
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <h3>What it measures</h3>
-      <ul>
-        <li>Angle reasoning</li>
-        <li>Distance reasoning</li>
-        <li>Relative position along X/Y/Z</li>
-        <li>Joint-level spatial consistency</li>
-        <li>Transfer to downstream hand tasks</li>
-      </ul>
-    </td>
-    <td width="50%" valign="top">
-      <h3>What it provides</h3>
-      <ul>
-        <li>1.6M+ VQA samples</li>
-        <li>Deterministic labels from 3D joints</li>
-        <li>Multiple source datasets</li>
-        <li>Training and evaluation splits</li>
-        <li>JSONL annotations plus image archives</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+## Highlights
+
+- 1.6M+ VQA samples grounded in 3D hand annotations.
+- Five reasoning categories: angle, distance, and relative position along X, Y, and Z.
+- Deterministic supervision derived directly from hand joint geometry.
+- Improves downstream zero-shot transfer to hand understanding tasks.
 
 ## Benchmark Snapshot
 
@@ -89,198 +65,12 @@ HandVQA is a large-scale, 3D-grounded diagnostic benchmark for evaluating that w
 | Scale | 1.6M+ VQA samples |
 | Format | JSONL annotations + image archives |
 
-<p align="center">
-  <img src="./static/images/benchmark_sec/mano_joint_map.png" alt="MANO joint map" width="70%">
-</p>
-
-<p align="center">
-  <em>Hand joint map used to compute pose descriptors and generate geometry-grounded questions.</em>
-</p>
-
-## Pose Descriptors
-
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <img src="./static/images/benchmark_sec/angle.png" alt="Angle descriptor" width="100%">
-      <br>
-      <strong>Angle</strong><br>
-      Bent completely inward, bent inward, bent slightly inward, straight
-    </td>
-    <td align="center" width="50%">
-      <img src="./static/images/benchmark_sec/distance.png" alt="Distance descriptor" width="100%">
-      <br>
-      <strong>Distance</strong><br>
-      Close to, spread from, spread wide from
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="./static/images/benchmark_sec/relative_position_x.png" alt="Relative position x" width="100%">
-      <br>
-      <strong>Relative Position X</strong><br>
-      Left of, aligned, right of
-    </td>
-    <td align="center" width="50%">
-      <img src="./static/images/benchmark_sec/relative_position_y.png" alt="Relative position y" width="100%">
-      <br>
-      <strong>Relative Position Y</strong><br>
-      Below, aligned, above
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <img src="./static/images/benchmark_sec/relative_position_z.png" alt="Relative position z" width="50%">
-      <br>
-      <strong>Relative Position Z</strong><br>
-      Behind, aligned, in front of
-    </td>
-  </tr>
-</table>
-
-## Where Current VLMs Fail
-
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <img src="./static/images/qual_ood/Picture1.png" alt="Failure example 1" width="100%"><br>
-      <strong>Finger crossing</strong><br>
-      Base VLMs often miss self-occlusion cues.
-    </td>
-    <td align="center" width="33%">
-      <img src="./static/images/qual_ood/Picture2.jpg" alt="Failure example 2" width="100%"><br>
-      <strong>Distance reasoning</strong><br>
-      Models confuse which fingers are spread the widest.
-    </td>
-    <td align="center" width="33%">
-      <img src="./static/images/qual_ood/Picture3.jpg" alt="Failure example 3" width="100%"><br>
-      <strong>Reference-point reasoning</strong><br>
-      Fingertip-to-palm distance remains difficult.
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%">
-      <img src="./static/images/qual_ood/Picture4.jpg" alt="Failure example 4" width="100%"><br>
-      <strong>Depth ordering</strong><br>
-      Crossing relations are often misread.
-    </td>
-    <td align="center" width="33%">
-      <img src="./static/images/qual_ood/Picture5.jpg" alt="Failure example 5" width="100%"><br>
-      <strong>X-axis reasoning</strong><br>
-      Left-right relations can flip under pose changes.
-    </td>
-    <td align="center" width="33%">
-      <img src="./static/images/qual_ood/Picture6.jpg" alt="Failure example 6" width="100%"><br>
-      <strong>Contact detection</strong><br>
-      Finger touching and proximity are commonly missed.
-    </td>
-  </tr>
-</table>
-
-## Pipeline
-
-The HandVQA pipeline converts normalized 3D hand joints into interpretable VQA pairs in three deterministic stages:
-
-1. Pose extraction from 3D joints into angle, distance, and relative-position descriptors.
-2. Text generation using fixed templates and grounded answer options.
-3. MCQ construction with a single correct label for each hand image.
-
-<p align="center">
-  <img src="./static/images/benchmark_sec/pipeline.png" alt="HandVQA pipeline" width="100%">
-</p>
-
-<p align="center">
-  <img src="./static/images/benchmark_sec/question examples.png" alt="Question examples" width="100%">
-</p>
-
-## Dataset Scale and Coverage
-
-<p align="center">
-  <img src="./static/images/benchmark_sec/training_eval_question_types.png" alt="Training and evaluation distribution" width="100%">
-</p>
-
-The benchmark maintains coverage across all five spatial reasoning categories in both training and evaluation splits, supporting balanced diagnosis and fair comparison.
-
 ## Results
 
-<p align="center">
-  <img src="./static/images/quant_res/Table_2.png" alt="Angle results" width="88%">
-</p>
-
-<p align="center">
-  <em>Angle and fine-grained articulation remain difficult for strong open VLMs, while geometry-grounded training improves consistency.</em>
-</p>
-
-<p align="center">
-  <img src="./static/images/quant_res/Table_3.png" alt="Relative position results" width="88%">
-</p>
-
-<p align="center">
-  <em>Directional reasoning across left-right, above-below, and front-behind benefits strongly from HandVQA supervision.</em>
-</p>
-
-<p align="center">
-  <img src="./static/images/quant_res/Table_4.png" alt="Zero-shot transfer results" width="72%">
-</p>
-
-<p align="center">
-  <em>Spatial grounding learned on HandVQA transfers zero-shot to downstream gesture recognition and hand-object interaction tasks.</em>
-</p>
-
-### Key Findings
-
-- Strong VLMs still struggle with subtle hand articulation and precise geometric interpretation.
-- Distance reasoning often shows a bias toward visually plausible but incorrect answers.
-- Left/right, above/below, and front/behind improve substantially with HandVQA supervision.
-- 3D-grounded training transfers zero-shot to gesture recognition and hand-object interaction tasks.
-
-## Qualitative Transfer Results
-
-Instead of packing every figure into one grid, this section highlights the most important qualitative takeaways first and keeps each figure readable on GitHub.
-
-### Downstream Transfer
-
-<p align="center">
-  <img src="./static/images/qual_res/qualitative_results_gesture.png" alt="Gesture transfer" width="90%">
-</p>
-
-<p align="center">
-  <em>Zero-shot gesture recognition improves after HandVQA training, suggesting better hand-pose awareness beyond the benchmark itself.</em>
-</p>
-
-<p align="center">
-  <img src="./static/images/qual_res/qualitative_results_interaction.png" alt="Interaction transfer" width="90%">
-</p>
-
-<p align="center">
-  <em>Zero-shot hand-object interaction recognition also benefits, showing that the learned spatial prior generalizes across tasks.</em>
-</p>
-
-### Benchmark Examples
-
-<p align="center">
-  <img src="./static/images/qual_res/qualitative_results_freihand_v2.png" alt="FreiHAND qualitative results" width="90%">
-</p>
-
-<p align="center">
-  <em>FreiHAND: fine-tuned models answer joint-level spatial questions more consistently than base models across diverse poses.</em>
-</p>
-
-<p align="center">
-  <img src="./static/images/qual_res/qualitative_results_fpha_v2.png" alt="FPHA qualitative results" width="90%">
-</p>
-
-<p align="center">
-  <em>FPHA: the improvement remains visible in egocentric settings, where articulation and viewpoint make spatial reasoning harder.</em>
-</p>
-
-<p align="center">
-  <img src="./static/images/qual_res/qualitative_results_interhand_v2.png" alt="InterHand qualitative results" width="90%">
-</p>
-
-<p align="center">
-  <em>InterHand2.6M: gains persist on another dataset, supporting the claim that HandVQA supervision improves general spatial understanding of hands.</em>
-</p>
+- Strong VLMs still struggle with subtle articulation and precise geometric reasoning about hands.
+- Distance reasoning often shows a bias toward visually plausible but incorrect predictions.
+- Left/right, above/below, and front/behind reasoning improve substantially with HandVQA supervision.
+- Spatial grounding learned from HandVQA transfers zero-shot to gesture recognition and hand-object interaction tasks.
 
 ## Getting Started
 
