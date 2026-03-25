@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  MD Khalequzzaman Chowdhury Sayem*, Mubarrat Tajoar Chowdhury*, Yihalem Yimolal Tiruneh, Muneeb A. Khan, Muhammad Salman Ali, Binod Bhattarai, Seungryul Baek
+  MD Khalequzzaman Chowdhury Sayem <sup>1*</sup>, Mubarrat Tajoar Chowdhury<sup>1*</sup>, Yihalem Yimolal Tiruneh<sup>1</sup>, Muneeb A. Khan<sup>1*</sup>, Muhammad Salman Ali<sup>1*</sup>, Binod Bhattarai<sup>2,3,4</sup>, Seungryul Baek<sup>1</sup>
 </p>
 
 <p align="center">
-  UNIST, University of Aberdeen, University College London, Fogsphere (Redev.AI Ltd)
+  <sup>1</sup>UNIST, <sup>2</sup>University of Aberdeen, <sup>3</sup>University College London, <sup>4</sup>Fogsphere (Redev.AI Ltd)
 </p>
 
 <p align="center">
@@ -27,11 +27,6 @@ HandVQA is a large-scale diagnostic benchmark for evaluating fine-grained spatia
 
 Built on top of FreiHAND, InterHand2.6M, and FPHA, HandVQA contains more than 1.6 million questions grounded in 3D hand annotations. Beyond diagnosis, it also provides a path to improvement: spatially grounded training on HandVQA improves zero-shot transfer to downstream hand understanding tasks.
 
-## Abstract
-
-Understanding fine-grained articulation of human hands is critical in high-stakes settings such as robot-assisted surgery, chip manufacturing, and AR/VR-based human-AI interaction. Despite strong performance on general vision-language benchmarks, current vision-language models still struggle with fine-grained spatial reasoning, especially for complex, articulated hand poses.
-
-We introduce HandVQA, a large-scale diagnostic benchmark designed to evaluate detailed hand anatomy understanding through visual question answering. Built upon high-quality 3D hand datasets, HandVQA provides 1.6M+ controlled multiple-choice questions probing joint-level spatial relationships including angles, distances, and relative positions. Our experiments show that state-of-the-art vision-language models exhibit systematic failure modes such as hallucinated finger parts, incorrect geometric interpretations, and weak generalization. HandVQA not only exposes these limitations, but also demonstrates that 3D-grounded spatial supervision improves zero-shot transfer to gesture recognition and hand-object interaction tasks.
 
 ## Key Contributions
 
@@ -83,6 +78,17 @@ HandVQA/
 ```
 
 ## Download
+
+Clone the repo:
+```bash 
+git clone git@github.com:kcsayem/handvqa.git 
+```
+
+Create a virtual environment using for example conda
+```bash
+  conda create -n handvqa python=3.11 
+  conda activate handvqa
+```
 
 Install the downloader dependencies:
 
