@@ -1,0 +1,220 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "creators": "https://schema.org/creator",
+    "license": "https://schema.org/license"
+  },
+  "@type": "sc:Dataset",
+  "name": "HandVQA Benchmark",
+  "description": "HandVQA benchmark: joint-level angle, distance, and relative-position annotations, hosted on Hugging Face.",
+  "url": "https://huggingface.co/datasets/kcsayem/handvqa",
+  "version": "1.0.0",
+  "datePublished": "2025-05-15",
+  "creators": [
+    {
+      "@type": "Person",
+      "name": "Sayem"
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "citeAs": "Sayem HandVQA Benchmark",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "name": "fpha_evaluation_angle.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/fpha_evaluation_angle.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "ddbf7a22d4d920b0bc2d22fa72f0bc68"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "fpha_evaluation_distance.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/fpha_evaluation_distance.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "95054ff67fecf343b814767c43bc6e95"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "fpha_evaluation_relative_pos_x.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/fpha_evaluation_relative_pos_x.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "bce7db9c83febd6d3f4cd3409ef237e4"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "fpha_evaluation_relative_pos_y.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/fpha_evaluation_relative_pos_y.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "fbb1cd52d9ff2f96077d5fa5233bde84"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "fpha_evaluation_relative_pos_z.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/fpha_evaluation_relative_pos_z.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "46317512a23cedd8875b606d00569369"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "fpha_training.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/fpha_training.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "9dd0937ec45a22027e30d92ccb022ef6"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "freihand_evaluation_angle.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/freihand_evaluation_angle.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "4849aafdc62fca6170ea04bea08a4e3c"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "freihand_evaluation_distance.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/freihand_evaluation_distance.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "adc84914f091af2d1f5e7d03397c7422"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "freihand_evaluation_relative_pos_x.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/freihand_evaluation_relative_pos_x.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "1112b801fd5f3d7c7e2290f0a7bc1d29"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "freihand_evaluation_relative_pos_y.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/freihand_evaluation_relative_pos_y.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "64961197ad4b0d6eaeadc01207e2e88d"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "freihand_evaluation_relative_pos_z.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/freihand_evaluation_relative_pos_z.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "35955a3a9ab2dd8b5872a50220a22d33"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "freihand_training.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/freihand_training.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "39be35abb7ef2b7371dd52df02a0c850"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "interhand_evaluation_angle.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/interhand_evaluation_angle.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "1d7431fa3ed8d28bc06992ee2f3068be"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "interhand_evaluation_distance.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/interhand_evaluation_distance.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "44b9bbb4a1db11a705776901421b8e86"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "interhand_evaluation_relative_pos_x.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/interhand_evaluation_relative_pos_x.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "079d33a37521df4db0d283a81f6df404"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "interhand_evaluation_relative_pos_y.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/interhand_evaluation_relative_pos_y.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "c5443bb3704c5a99f6af406794859001"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "interhand_evaluation_relative_pos_z.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/interhand_evaluation_relative_pos_z.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "144af076fc28098ff9a21d75d96b1735"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "interhand_training.jsonl",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/interhand_training.jsonl?download=true",
+      "encodingFormat": "application/jsonl",
+      "md5": "a7cc6c03e42e033f0e6f6ed5c2398966"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "data/fpha_part_1.zip",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/data.zip?download=true",
+      "encodingFormat": "application/zip",
+      "md5": "388255af2666fc2add60d3ab5e427e76"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "data/fpha_part_2.zip",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/data.zip?download=true",
+      "encodingFormat": "application/zip",
+      "md5": "04858b2077d62448f7887b1f5a03c4c8"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "data/FreiHAND-002.zip",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/data.zip?download=true",
+      "encodingFormat": "application/zip",
+      "md5": "ccbf0738260ae03dcb754fe5bb8e6f5d"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "data/InterHand2.6M_5fps_batch1.zip",
+      "contentUrl": "https://huggingface.co/datasets/kcsayem/handvqa/resolve/main/data.zip?download=true",
+      "encodingFormat": "application/zip",
+      "md5": "90a868aa6fc3e53a3abec2562f66d05e"
+    }
+  ]
+}
