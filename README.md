@@ -10,8 +10,8 @@
   MD Khalequzzaman Chowdhury Sayem<sup>1*</sup>,
   Mubarrat Tajoar Chowdhury<sup>1*</sup>,
   Yihalem Yimolal Tiruneh<sup>1</sup>,
-  Muneeb A. Khan<sup>1*</sup>,
-  Muhammad Salman Ali<sup>1*</sup>,
+  Muneeb A. Khan<sup>1</sup>,
+  Muhammad Salman Ali<sup>1</sup>,
   Binod Bhattarai<sup>2,3,4&dagger;</sup>,
   Seungryul Baek<sup>1&dagger;</sup>
 </p>
