@@ -225,6 +225,16 @@ body {
 }
 
 /* Qualitative slide layout */
+#results-carousel-qual {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+#results-carousel-qual .item,
+#results-carousel-qual .carousel-item {
+  padding: 0 0.5rem 2rem;
+}
+
 .qual-figure {
   margin: 0;
   width: 100%;
@@ -232,9 +242,13 @@ body {
 }
 
 .qual-figure img {
-  width: 100%;
+  width: auto;
+  max-width: min(100%, 1040px);
+  height: min(78vh, 760px);
   border-radius: 12px;
   display: block;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 /* Caption styling */
@@ -243,4 +257,18 @@ body {
   font-size: 0.85rem;     /* similar to is-size-7 */
   line-height: 1.35;
   color: rgba(0,0,0,0.75);
+}
+
+@media screen and (max-width: 768px) {
+  #results-carousel-qual .item,
+  #results-carousel-qual .carousel-item {
+    padding: 0 0 1.5rem;
+  }
+
+  .qual-figure img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 420px;
+  }
 }
