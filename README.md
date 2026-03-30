@@ -210,5 +210,11 @@ The full data generation pipeline is documented in [pipeline/README.md](./pipeli
 ## Citation
 
 ```bibtex
-coming soon
+@inproceedings{sayem2026handvqa,
+  title     = {HandVQA: Diagnosing and Improving Fine-Grained Spatial Reasoning about Hands in Vision-Language Models},
+  author    = {Sayem, MD Khalequzzaman Chowdhury and Chowdhury, Mubarrat Tajoar and Tiruneh, Yihalem Yimolal and Khan, Muneeb A. and Ali, Muhammad Salman and Bhattarai, Binod and Baek, Seungryul},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2026},
+  note      = {arXiv:2603.26362}
+}
 ```
