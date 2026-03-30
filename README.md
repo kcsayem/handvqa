@@ -30,6 +30,9 @@
 
 <p align="center">
   <a href="https://kcsayem.github.io/handvqa/"><img alt="Project Page" src="https://img.shields.io/badge/Project-Page-3b3b3b?style=for-the-badge"></a>
+  <a href="https://arxiv.org/abs/2603.26362">
+  <img alt="arXiv" src="https://img.shields.io/badge/arXiv-2603.26362-b31b1b?style=for-the-badge">
+</a>
   <a href="https://huggingface.co/datasets/kcsayem/handvqa"><img alt="Dataset" src="https://img.shields.io/badge/HuggingFace-Dataset-fcc624?style=for-the-badge"></a>
   <a href="https://github.com/kcsayem/handvqa"><img alt="GitHub Code" src="https://img.shields.io/badge/GitHub-Code-2f3542?style=for-the-badge"></a>
 </p>
