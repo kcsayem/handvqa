@@ -80,7 +80,7 @@ HandVQA is a large-scale, 3D-grounded benchmark for diagnosing fine-grained spat
 Clone the repository:
 
 ```bash
-git clone git@github.com:kcsayem/handvqa.git
+git clone https://github.com/kcsayem/handvqa.git
 cd handvqa
 ```
 
