@@ -82,6 +82,50 @@ body {
   display: inline-block;
 }
 
+.institution-logos {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  justify-content: center;
+  margin: 0.85rem auto;
+  max-width: 760px;
+}
+
+.institution-logos a {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  outline-offset: 5px;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.institution-logos a:hover,
+.institution-logos a:focus-visible {
+  opacity: 0.78;
+  transform: translateY(-1px);
+}
+
+.institution-logos img {
+  display: block;
+  max-height: 38px;
+  max-width: 160px;
+  object-fit: contain;
+  width: auto;
+}
+
+@media screen and (max-width: 480px) {
+  .institution-logos {
+    gap: 0.7rem 1rem;
+    margin: 0.8rem auto;
+  }
+
+  .institution-logos img {
+    max-height: 30px;
+    max-width: 125px;
+  }
+}
+
 .publication-banner img {
 }
 
